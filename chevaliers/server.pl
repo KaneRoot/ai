@@ -24,8 +24,6 @@ our ($p1s, $p2s, $sock) = wait_for_players { %setup };
 sub print_game {
     say $clear;
 
-    say "SOMETHING";
-
     my ($player1, $player2) = get_players_choice $p1s, $p2s;
     check_game_logic $player1, $player2, $p1s, $p2s;
     play $player1, $player2, $p1s, $p2s, \%setup;
@@ -36,13 +34,13 @@ sub print_game {
     send_msg $p1s, { 
         score_p1 => $setup{score_p1}
         , score_p2 => $setup{score_p2}
-        , other_player => $player2
+        , opponent => $player2
     };
 
     send_msg $p2s, { 
         score_p1 => $setup{score_p1}
         , score_p2 => $setup{score_p2}
-        , other_player => $player1
+        , opponent => $player1
     };
 }
 
@@ -54,9 +52,9 @@ while(1) {
     if($setup{score_p1} >= $setup{max_score} || $setup{score_p2} >= $setup{max_score}) {
 
         if($setup{score_p1} > $setup{score_p2}) {
-            say "Player 1 win !!";
-            send_msg $p1s, {msg => "Player 1 win !!", BYE => 1 };
-            send_msg $p2s, {msg => "Player 1 win !!", BYE => 1 };
+            say "Player 1 wins !!";
+            send_msg $p1s, {msg => "Player 1 wins !!", BYE => 1 };
+            send_msg $p2s, {msg => "Player 1 wins !!", BYE => 1 };
         }
         elsif($setup{score_p1} == $setup{score_p2}) {
             say "DRAW !!!";
@@ -64,9 +62,9 @@ while(1) {
             send_msg $p2s, {msg => "DRAW !!!", BYE => 1 };
         }
         else {
-            say "Player 2 win !! ";
-            send_msg $p1s, {msg => "Player 2 win !!", BYE => 1 };
-            send_msg $p2s, {msg => "Player 2 win !!", BYE => 1 };
+            say "Player 2 wins !! ";
+            send_msg $p1s, {msg => "Player 2 wins !!", BYE => 1 };
+            send_msg $p2s, {msg => "Player 2 wins !!", BYE => 1 };
         }
 
         exit 0;

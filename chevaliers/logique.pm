@@ -3,6 +3,7 @@ use v5.10;
 
 use IO::Socket::INET6;
 use YAML::XS;
+use communication ':all';
 
 use Exporter 'import';
 # what we want to export eventually
@@ -20,7 +21,6 @@ our %EXPORT_TAGS = ( all => [qw/check_game_logic play/] );
 sub play { # the game logic must be checked before
     my ($p1, $p2, $p1s, $p2s, $setup) = @_;
 
-    say "PLAY";
     $$setup{score_p1}++ if($$p1{gav} && ! $$p2{gdv});
     $$setup{score_p2}++ if($$p2{gav} && ! $$p1{gdv});
     $$setup{score_p1}++ if($$p1{gah} && ! $$p2{ddh});
@@ -40,12 +40,12 @@ sub check_game_logic {
 
         unless(is_inputs_ok($p1)) {
             say "P1 : Your algo sucks balls";
-            say $p1s "Your algo sucks balls";
+            send_msg $p1s, {msg => "Your algo sucks balls", BYE => 1};
         }
 
         unless(is_inputs_ok($p2)) {
             say "P2 : Your algo sucks balls";
-            say $p2s "Your algo sucks balls";
+            send_msg $p2s, {msg => "Your algo sucks balls", BYE => 1};
         }
 
         die "Algo issue, end of the game";

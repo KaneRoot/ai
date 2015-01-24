@@ -26,12 +26,12 @@ ddh 0 dah 1 ddv 1 dav 0
 
 while(1) {
 
-    say "I expect something";
+    # I receive what the opponent played last time
+    # but I don't do anything because it's a dumb algo
     my $response = recv_msg $sock;
     say $$response{msg} if $$response{msg};
     last if $$response{BYE};
 
-    say "I say something";
     send_msg $sock, { %player };
     sleep 1;
 }
