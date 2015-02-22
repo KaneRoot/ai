@@ -4,6 +4,9 @@ use Modern::Perl;
 use IO::Socket::INET6;
 use YAML::XS;
 
+use FindBin qw($Bin);
+use lib "$Bin/.";
+
 use affichage ':all';
 use api ':all';
 use logique ':all';

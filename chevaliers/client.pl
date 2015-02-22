@@ -5,6 +5,10 @@ use v5.14;
 use YAML::XS;
 use autodie;
 use Modern::Perl;
+
+use FindBin qw($Bin);
+use lib "$Bin/.";
+
 use affichage ':all';
 use api ':client';
 use communication ':all';
