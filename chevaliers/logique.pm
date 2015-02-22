@@ -36,14 +36,14 @@ sub check_game_logic {
     my ($p1, $p2, $p1s, $p2s) = @_;
 
     # print errors if there is a problem
-    unless(is_inputs_ok($p1) && is_inputs_ok($p2)) {
+    unless($p1 && $p2 && is_inputs_ok($p1) && is_inputs_ok($p2)) {
 
-        unless(is_inputs_ok($p1)) {
+        unless(&p1 && is_inputs_ok($p1)) {
             say "P1 : Your algo sucks balls";
             send_msg $p1s, {msg => "Your algo sucks balls", BYE => 1};
         }
 
-        unless(is_inputs_ok($p2)) {
+        unless($p2 && is_inputs_ok($p2)) {
             say "P2 : Your algo sucks balls";
             send_msg $p2s, {msg => "Your algo sucks balls", BYE => 1};
         }
