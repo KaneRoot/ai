@@ -27,6 +27,7 @@ our %EXPORT_TAGS = (
 sub wait_for_players {
     my ($setup) = @_;
 
+    say "Setting up sockets";
     my $sock = IO::Socket::INET6->new(Listen => 2
         , LocalAddr => $$setup{ipaddress}
         , LocalPort => $$setup{portaddress}
@@ -34,8 +35,11 @@ sub wait_for_players {
         , ReuseAddr => 1
         , ReusePort => 1) or die "impossible d'init le serveur $@";
 
+    say "Ready\nWaiting for players, 2 slots remaining";
     my $p1s = $sock->accept(); 
+    say "Waiting for players, 1 slot remaining";
     my $p2s = $sock->accept(); 
+    say "Something went wrong, you should have time to see this message";
 
     send_msg $p1s, { msg => "1, O"};
     send_msg $p2s, { msg => "2, X"};
