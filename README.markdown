@@ -29,20 +29,4 @@ example, feel free to use whatever language you want !
 
 # install modules and launch
 
-cpanminus and its configuration :
-
-    sudo apt-get install cpanminus
-
-Then in the ~/.bashrc (or ~/.zshrc, whatever) :
-
-    export PERL_LOCAL_LIB_ROOT="~/perl5";
-    export PERL_MB_OPT="--install_base ~/perl5";
-    export PERL_MM_OPT="INSTALL_BASE=~/perl5";
-    export PERL5LIB="~/perl5/lib/perl5/i686-linux-gnu-thread-multi-64int/:~/perl5/lib/perl5/x86_64-linux-thread-multi:~/perl5/lib/perl5";
-    export PATH="$PATH:~/perl5/bin";
-
-installation of the required modules :
-
-    cpanm IO::Socket
-    cpanm YAML::XS
-    cpanm Modern::Perl
+    sudo apt-get install libmodern-perl-perl libio-socket-inet6-perl libyaml-libyaml-perl 
